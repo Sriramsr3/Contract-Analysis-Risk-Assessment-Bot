@@ -3,21 +3,30 @@ import PyPDF2
 from docx import Document
 import os
 import re
+import subprocess
+import sys
 from collections import defaultdict
 
 class NLPEngine:
     def __init__(self):
+        self.nlp = None
         try:
             self.nlp = spacy.load("en_core_web_sm")
+            print("✅ spaCy model loaded successfully")
         except OSError:
             # Model not found, try to download it
-            print("Downloading spaCy model...")
+            print("📥 spaCy model not found. Attempting to download...")
             try:
-                os.system("python -m spacy download en_core_web_sm")
+                # Use subprocess for better error handling
+                subprocess.check_call([
+                    sys.executable, "-m", "spacy", "download", "en_core_web_sm"
+                ])
                 self.nlp = spacy.load("en_core_web_sm")
+                print("✅ spaCy model downloaded and loaded successfully")
             except Exception as e:
-                print(f"Warning: Could not load spaCy model. Using basic NLP. Error: {e}")
-                # Create a minimal nlp object for basic functionality
+                print(f"⚠️ Warning: Could not load spaCy model. Using regex-based NLP fallback.")
+                print(f"Error details: {e}")
+                # Will use regex-based fallbacks throughout the code
                 self.nlp = None
         
         # Contract type keywords
