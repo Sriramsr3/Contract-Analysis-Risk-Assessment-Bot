@@ -113,7 +113,7 @@ Negotiation Support
 ## 🛠️ Technical Stack
 
 - **Frontend**: Streamlit
-- **NLP**: spaCy (en_core_web_sm)
+- **NLP**: Regex-based pattern matching (lightweight, no external models)
 - **LLM**: OpenRouter API (GPT-4, Claude, Gemini, etc.)
 - **Visualization**: Plotly
 - **PDF Generation**: ReportLab
@@ -155,7 +155,7 @@ This is an educational project. Suggestions and improvements are welcome!
 ## 🙏 Credits
 
 Built with:
-- **spaCy** - NLP processing
+- **Regex Patterns** - Lightweight NLP processing
 - **OpenRouter** - Multi-model LLM access
 - **Streamlit** - Web framework
 - **Plotly** - Visualizations
