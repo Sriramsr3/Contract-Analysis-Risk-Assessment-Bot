@@ -91,92 +91,28 @@ The app will open in your browser at `http://localhost:8501`
    - Export JSON data
    - Log to audit trail
 
-## 📁 Project Structure
 
-```
-Contract Analysis Bot/
-├── app.py                      # Main Streamlit application
-├── modules/
-│   ├── nlp_engine.py          # NLP processing & entity extraction
-│   ├── legal_analyzer.py      # LLM-based risk assessment
-│   ├── report_generator.py    # PDF report generation
-│   └── templates.py           # Standard contract templates
-├── data/                      # Sample contracts & uploads
-│   ├── comprehensive_vendor_contract.txt
-│   ├── employment_contract_hindi.txt
-│   └── sample_contract.txt
-├── logs/                      # Audit trails
-├── requirements.txt           # Dependencies
-├── README.md                  # This file
-└── DOCUMENTATION.md           # Detailed documentation
-```
 
 ## 🎨 Features Showcase
 
-### Risk Assessment Dashboard
-- **Interactive Gauge**: Visual 0-100 risk score
-- **Color-Coded Risks**: Critical (red), High (orange), Medium (yellow), Low (green)
-- **Verdict Card**: Clear recommendation (Sign/Negotiate/Reject/Seek Counsel)
+Risk Assessment Dashboard
 
-### Clause-by-Clause Analysis
-- **Plain English Explanations**: Simplifies legal language
-- **Obligations vs Rights**: Clear breakdown of what you must do vs what you can do
-- **Red Flags**: Highlights concerning aspects
+Clause-by-Clause Analysis
 
-### Compliance Checking
-- **Indian Contract Act 1872**: Section 23, 27 compliance
-- **Labor Laws**: Payment of Wages Act, Shops & Establishments
-- **Tax Laws**: GST Act compliance
+Compliance Checking
 
-### Negotiation Support
-- **Unfavorable Terms**: Identifies one-sided clauses
-- **Impact Analysis**: Business consequences explained
-- **Negotiation Strategies**: Specific tactics for each issue
-- **Priority List**: Top 3 items to negotiate
+Negotiation Support
+
 
 ## 🔧 Supported Models (via OpenRouter)
-
-- `openai/gpt-4-turbo` ⭐ Recommended
+- `openai/gpt-4o-mini` ⭐ Used
+- `openai/gpt-4-turbo`
 - `anthropic/claude-3.5-sonnet`
 - `google/gemini-pro-1.5`
 - `meta-llama/llama-3.1-70b-instruct`
 - `qwen/qwen-2.5-72b-instruct`
 - Any other model from [OpenRouter.ai/models](https://openrouter.ai/models)
 
-## 📊 Sample Contracts
-
-Three sample contracts are included for testing:
-
-1. **Vendor Contract** (English) - High-risk clauses including:
-   - Unequal termination rights
-   - Unlimited indemnity
-   - 5-year non-compete
-   - Auto-renewal
-   - Harsh penalties
-
-2. **Employment Contract** (Hindi) - Unfair labor terms:
-   - 60-hour work week
-   - Unequal notice periods
-   - 7-year non-compete
-   - Minimal leave
-
-3. **Service Agreement** (English) - Basic contract for quick testing
-
-## ⚖️ Legal Disclaimer
-
-**IMPORTANT**: This tool provides preliminary analysis only and is NOT a substitute for professional legal advice.
-
-- Always consult a qualified legal professional before signing contracts
-- The analysis is based on AI interpretation and may not catch all issues
-- Indian law is complex and context-dependent
-- Use this tool as a starting point for legal review, not as final authority
-
-## 🔒 Privacy & Security
-
-- **Local NLP Processing**: Entity extraction runs on your machine
-- **No Data Storage**: Contracts are not permanently stored
-- **Optional Audit Logs**: You control what gets logged
-- **Secure API**: API keys are password-masked
 
 ## 🛠️ Technical Stack
 
@@ -186,18 +122,6 @@ Three sample contracts are included for testing:
 - **Visualization**: Plotly
 - **PDF Generation**: ReportLab
 - **Data Processing**: Pandas
-
-## 📖 Documentation
-
-For detailed documentation, see [DOCUMENTATION.md](DOCUMENTATION.md)
-
-Topics covered:
-- Complete feature list
-- Architecture details
-- API integration guide
-- Output structure
-- Troubleshooting
-- Use cases
 
 ## 🎯 Use Cases
 
