@@ -156,14 +156,6 @@ Negotiation Support
 
 This is an educational project. Suggestions and improvements are welcome!
 
-## 📞 Support
-
-For issues:
-1. Check [DOCUMENTATION.md](DOCUMENTATION.md)
-2. Review sample contracts
-3. Test with mock mode (no API key)
-4. Verify dependencies
-
 ## 🙏 Credits
 
 Built with:
@@ -178,5 +170,3 @@ Built with:
 **Version**: 1.0  
 **Focus**: Indian Contract Law for SMEs  
 **License**: Educational Use  
-
-Made with ❤️ for Indian Small & Medium Enterprises
