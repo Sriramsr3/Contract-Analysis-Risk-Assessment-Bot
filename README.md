@@ -41,7 +41,7 @@ A sophisticated GenAI-powered legal assistant that helps small and medium busine
 
 ```bash
 # Clone or download the project
-cd "Data Science"
+cd "folder-name"
 
 # Install dependencies
 pip install -r requirements.txt
