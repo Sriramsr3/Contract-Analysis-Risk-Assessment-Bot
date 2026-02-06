@@ -9,10 +9,16 @@ class NLPEngine:
     def __init__(self):
         try:
             self.nlp = spacy.load("en_core_web_sm")
-        except:
-            # If not available, we'll try to download it or use a fallback
-            os.system("python -m spacy download en_core_web_sm")
-            self.nlp = spacy.load("en_core_web_sm")
+        except OSError:
+            # Model not found, try to download it
+            print("Downloading spaCy model...")
+            try:
+                os.system("python -m spacy download en_core_web_sm")
+                self.nlp = spacy.load("en_core_web_sm")
+            except Exception as e:
+                print(f"Warning: Could not load spaCy model. Using basic NLP. Error: {e}")
+                # Create a minimal nlp object for basic functionality
+                self.nlp = None
         
         # Contract type keywords
         self.contract_keywords = {
@@ -113,8 +119,6 @@ class NLPEngine:
 
     def get_enhanced_entities(self, text):
         """Enhanced NER with contract-specific entities"""
-        doc = self.nlp(text[:100000])  # Limit for performance
-        
         entities = {
             "parties": [],
             "persons": [],
@@ -125,29 +129,35 @@ class NLPEngine:
             "durations": [],
         }
         
-        for ent in doc.ents:
-            if ent.label_ == "ORG":
-                entities["organizations"].append(ent.text)
-            elif ent.label_ == "PERSON":
-                entities["persons"].append(ent.text)
-            elif ent.label_ == "GPE":
-                entities["locations"].append(ent.text)
-            elif ent.label_ == "DATE":
-                entities["dates"].append(ent.text)
-            elif ent.label_ == "MONEY":
-                entities["amounts"].append(ent.text)
-            elif ent.label_ == "TIME":
-                entities["durations"].append(ent.text)
+        if self.nlp is not None:
+            try:
+                doc = self.nlp(text[:100000])  # Limit for performance
+                
+                for ent in doc.ents:
+                    if ent.label_ == "ORG":
+                        entities["organizations"].append(ent.text)
+                    elif ent.label_ == "PERSON":
+                        entities["persons"].append(ent.text)
+                    elif ent.label_ == "GPE":
+                        entities["locations"].append(ent.text)
+                    elif ent.label_ == "DATE":
+                        entities["dates"].append(ent.text)
+                    elif ent.label_ == "MONEY":
+                        entities["amounts"].append(ent.text)
+                    elif ent.label_ == "TIME":
+                        entities["durations"].append(ent.text)
+                
+                # Extract parties (usually first 2 organizations mentioned)
+                if entities["organizations"]:
+                    entities["parties"] = entities["organizations"][:2]
+                
+                # Deduplicate
+                for key in entities:
+                    entities[key] = list(set(entities[key]))
+            except Exception as e:
+                print(f"Error in NER: {e}")
         
-        # Extract parties (usually first 2 organizations mentioned)
-        if entities["organizations"]:
-            entities["parties"] = entities["organizations"][:2]
-        
-        # Deduplicate
-        for key in entities:
-            entities[key] = list(set(entities[key]))
-        
-        # Extract CIN, GST numbers using regex
+        # Extract CIN, GST numbers using regex (works without spaCy)
         entities["cin"] = re.findall(r'CIN:\s*([A-Z0-9]{21})', text)
         entities["gst"] = re.findall(r'GST:\s*(\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d{1}[A-Z]{1}\d{1})', text)
         
@@ -155,8 +165,6 @@ class NLPEngine:
 
     def identify_obligations_rights(self, text):
         """Identify obligations, rights, and prohibitions in contract"""
-        doc = self.nlp(text[:50000])
-        
         obligations = []
         rights = []
         prohibitions = []
@@ -166,18 +174,35 @@ class NLPEngine:
         right_verbs = ["may", "entitled to", "has the right", "can", "permitted to"]
         prohibition_verbs = ["shall not", "must not", "prohibited", "forbidden", "may not"]
         
-        for sent in doc.sents:
-            sent_text = sent.text.lower()
-            
-            # Check for prohibitions first (more specific)
-            if any(verb in sent_text for verb in prohibition_verbs):
-                prohibitions.append(sent.text.strip())
-            # Then obligations
-            elif any(verb in sent_text for verb in obligation_verbs):
-                obligations.append(sent.text.strip())
-            # Then rights
-            elif any(verb in sent_text for verb in right_verbs):
-                rights.append(sent.text.strip())
+        if self.nlp is not None:
+            try:
+                doc = self.nlp(text[:50000])
+                
+                for sent in doc.sents:
+                    sent_text = sent.text.lower()
+                    
+                    # Check for prohibitions first (more specific)
+                    if any(verb in sent_text for verb in prohibition_verbs):
+                        prohibitions.append(sent.text.strip())
+                    # Then obligations
+                    elif any(verb in sent_text for verb in obligation_verbs):
+                        obligations.append(sent.text.strip())
+                    # Then rights
+                    elif any(verb in sent_text for verb in right_verbs):
+                        rights.append(sent.text.strip())
+            except Exception as e:
+                print(f"Error in obligations/rights detection: {e}")
+        else:
+            # Fallback: simple sentence splitting
+            sentences = re.split(r'[.!?]+', text[:50000])
+            for sent in sentences:
+                sent_text = sent.lower()
+                if any(verb in sent_text for verb in prohibition_verbs):
+                    prohibitions.append(sent.strip())
+                elif any(verb in sent_text for verb in obligation_verbs):
+                    obligations.append(sent.strip())
+                elif any(verb in sent_text for verb in right_verbs):
+                    rights.append(sent.strip())
         
         return {
             "obligations": obligations[:10],  # Limit to top 10
