@@ -41,6 +41,6 @@ REPORT_FILENAME_PREFIX = "contract_report"
 AUDIT_LOG_FILE = "audit_trail.json"
 
 # UI Settings
-PAGE_TITLE = "FinHealth Legal AI"
+PAGE_TITLE = "Contract Analysis & Risk Assessment Bot"
 PAGE_ICON = "⚖️"
 LAYOUT = "wide"

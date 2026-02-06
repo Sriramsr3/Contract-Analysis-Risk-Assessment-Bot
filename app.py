@@ -482,7 +482,7 @@ else:
 st.markdown("---")
 st.markdown("""
     <div style='text-align: center; color: #666; padding: 20px;'>
-        <p>⚖️ <b>FinHealth Legal AI</b> - Empowering Indian SMEs with AI-Powered Contract Analysis</p>
+        <p>⚖️ <b>Contract Analysis & Risk Assessment Bot</b> - Empowering Indian SMEs with AI-Powered Contract Analysis</p>
         <p style='font-size: 0.9em;'>⚠️ This tool provides preliminary analysis only. Always consult a qualified legal professional before making decisions.</p>
     </div>
     """, unsafe_allow_html=True)
