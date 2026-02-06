@@ -46,8 +46,6 @@ cd "folder-name"
 # Install dependencies
 pip install -r requirements.txt
 
-
-
 ### Get API Key
 
 1. Visit [OpenRouter.ai](https://openrouter.ai/) and sign up
@@ -165,6 +163,6 @@ Built with:
 
 ---
 
-**Version**: 1.0  
-**Focus**: Indian Contract Law for SMEs  
-**License**: Educational Use  
+##  Check the live demo here 
+ 
+`https://contract-analysis-risk-assessment-bot-1.streamlit.app/`
