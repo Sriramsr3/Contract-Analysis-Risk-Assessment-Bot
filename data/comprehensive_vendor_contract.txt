@@ -1,0 +1,124 @@
+VENDOR SERVICE AGREEMENT
+
+This Vendor Service Agreement ("Agreement") is entered into on 15th January 2024 ("Effective Date") between:
+
+PARTY A: TechVenture Solutions Private Limited
+Registered Office: 45, MG Road, Bengaluru, Karnataka - 560001
+CIN: U72900KA2020PTC134567
+GST: 29AABCT1234F1Z5
+("Service Provider" or "Vendor")
+
+AND
+
+PARTY B: RetailMax India Pvt Ltd
+Registered Office: Tower B, Cyber City, Gurgaon, Haryana - 122002
+CIN: U51909HR2018PTC078901
+GST: 06AACCT5678M1Z3
+("Client")
+
+WHEREAS the Client desires to engage the Vendor to provide software development and maintenance services, and the Vendor agrees to provide such services on the terms and conditions set forth herein.
+
+NOW, THEREFORE, in consideration of the mutual covenants and agreements contained herein, the parties agree as follows:
+
+1. SCOPE OF SERVICES
+1.1 The Vendor shall provide the following services:
+    (a) Development of custom e-commerce platform
+    (b) Integration with existing ERP systems
+    (c) Monthly maintenance and bug fixes
+    (d) 24/7 technical support
+    (e) Quarterly security audits and updates
+
+1.2 Deliverables shall be provided as per the project timeline attached as Annexure A.
+
+2. TERM AND TERMINATION
+2.1 This Agreement shall commence on the Effective Date and continue for a period of 24 months.
+2.2 The Client may terminate this Agreement at any time with 7 days written notice, without providing any reason.
+2.3 The Vendor must provide 90 days written notice for termination and shall be liable for penalties equivalent to 3 months of fees.
+2.4 Upon termination by Client, Vendor shall immediately cease all work and shall not be entitled to any compensation for work in progress.
+2.5 This Agreement shall automatically renew for successive 2-year terms unless either party provides 180 days written notice.
+
+3. FEES AND PAYMENT TERMS
+3.1 The Client shall pay the Vendor a total project fee of INR 85,00,000 (Rupees Eighty-Five Lakhs only).
+3.2 Payment Schedule:
+    - 50% advance payment upon signing (INR 42,50,000)
+    - 30% upon UAT completion (INR 25,50,000)
+    - 20% upon final deployment (INR 17,00,000)
+3.3 All payments are non-refundable under any circumstances.
+3.4 Late payment shall attract interest at 24% per annum, compounded monthly.
+3.5 Client shall bear all banking charges, GST, and any other applicable taxes.
+
+4. INTELLECTUAL PROPERTY RIGHTS
+4.1 All intellectual property rights, including but not limited to source code, designs, documentation, and any derivative works created during the course of this engagement shall vest exclusively and perpetually with the Client.
+4.2 The Vendor hereby assigns all present and future IP rights to the Client without any additional consideration.
+4.3 The Vendor waives all moral rights in the work product.
+4.4 The Vendor shall not use any knowledge, techniques, or methodologies developed during this project for any other client or purpose.
+
+5. CONFIDENTIALITY AND NON-DISCLOSURE
+5.1 The Vendor acknowledges that it will have access to Confidential Information of the Client.
+5.2 "Confidential Information" means any and all information, whether written, oral, or in any other form.
+5.3 The Vendor shall maintain strict confidentiality for a period of 10 years from the date of disclosure.
+5.4 Breach of confidentiality shall result in liquidated damages of INR 50,00,000 per instance.
+
+6. INDEMNITY AND LIABILITY
+6.1 The Vendor shall indemnify, defend, and hold harmless the Client, its affiliates, directors, officers, employees, and agents from and against any and all claims, damages, losses, liabilities, costs, and expenses (including legal fees) arising from:
+    (a) Any breach of this Agreement by the Vendor
+    (b) Any negligent or willful act or omission by the Vendor
+    (c) Any third-party claims related to the services
+    (d) Any intellectual property infringement claims
+    (e) Any claims arising from the Client's use of the deliverables, even if caused by Client's own negligence
+6.2 The Vendor's liability under this Agreement is unlimited and uncapped.
+6.3 The Client shall have no liability whatsoever to the Vendor under any circumstances.
+
+7. NON-COMPETE AND NON-SOLICITATION
+7.1 During the term of this Agreement and for a period of 5 years thereafter, the Vendor shall not:
+    (a) Provide services to any company in the retail, e-commerce, or technology sector in India
+    (b) Develop similar software or solutions for any other client
+    (c) Solicit or hire any employee or contractor of the Client
+7.2 The Vendor acknowledges that the geographic restriction applies to the entire territory of India.
+7.3 Breach of this clause shall result in liquidated damages of INR 1,00,00,000.
+
+8. PERFORMANCE STANDARDS AND PENALTIES
+8.1 The Vendor guarantees 99.99% uptime for all systems.
+8.2 Any downtime exceeding 1 hour shall result in penalties of INR 5,00,000 per hour or part thereof.
+8.3 Delay in deliverables shall attract penalties of INR 2,00,000 per day.
+8.4 The Client reserves the right to deduct penalties from any amounts due to the Vendor.
+
+9. DISPUTE RESOLUTION AND JURISDICTION
+9.1 Any disputes arising out of or in connection with this Agreement shall be subject to the exclusive jurisdiction of courts in Gurgaon, Haryana.
+9.2 The Vendor hereby irrevocably submits to the jurisdiction of such courts.
+9.3 This Agreement shall be governed by the laws of India.
+9.4 The Vendor waives any right to arbitration or alternative dispute resolution.
+
+10. FORCE MAJEURE
+10.1 The Client shall not be liable for any failure to perform its obligations due to force majeure events.
+10.2 Force majeure shall not excuse the Vendor's performance under any circumstances.
+
+11. AMENDMENTS
+11.1 The Client may amend this Agreement at any time by providing written notice to the Vendor.
+11.2 Such amendments shall be binding on the Vendor immediately upon notice.
+
+12. GENERAL PROVISIONS
+12.1 This Agreement constitutes the entire agreement between the parties.
+12.2 No waiver by the Client of any breach shall constitute a waiver of any subsequent breach.
+12.3 If any provision is held invalid, the remaining provisions shall continue in full force.
+12.4 The Vendor may not assign this Agreement without prior written consent of the Client.
+12.5 The Client may assign this Agreement to any third party without notice.
+
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.
+
+FOR TECHVENTURE SOLUTIONS PVT LTD          FOR RETAILMAX INDIA PVT LTD
+
+_______________________________            _______________________________
+Authorized Signatory                       Authorized Signatory
+Name: Rajesh Kumar                         Name: Priya Sharma
+Designation: Director                      Designation: CEO
+Date: 15/01/2024                          Date: 15/01/2024
+
+WITNESSES:
+1. ___________________________
+   Name:
+   Address:
+
+2. ___________________________
+   Name:
+   Address:

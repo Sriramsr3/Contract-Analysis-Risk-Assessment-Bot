@@ -1,0 +1,21 @@
+EMPLOYMENT AGREEMENT
+
+Agreement between RapidTech Pvt Ltd and Employee.
+
+1. Role and Duties
+Employee shall perform duties assigned by employer.
+
+2. Salary
+Salary paid monthly.
+
+3. Termination
+Employer may terminate employee without notice or compensation.
+
+4. Non-Compete
+Employee cannot work with competitors for 2 years after exit.
+
+5. IP Ownership
+All employee-created work belongs exclusively to employer.
+
+6. Jurisdiction
+Bengaluru courts govern disputes.

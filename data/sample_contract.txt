@@ -1,0 +1,21 @@
+SERVICE AGREEMENT
+
+This Service Agreement is made between Alpha Retail Pvt Ltd and BrightTech Solutions.
+
+1. Services
+BrightTech Solutions agrees to provide software maintenance services for 12 months.
+
+2. Payment Terms
+Alpha Retail shall pay INR 5,00,000 annually. Payments delayed beyond 30 days incur penalties.
+
+3. Termination
+Alpha Retail may terminate the contract at any time without prior notice.
+
+4. Indemnity
+Vendor agrees to indemnify Alpha Retail against all losses or damages arising from service failure.
+
+5. Auto Renewal
+This agreement automatically renews annually unless terminated 60 days prior.
+
+6. Jurisdiction
+All disputes shall fall under Mumbai jurisdiction.
