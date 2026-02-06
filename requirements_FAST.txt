@@ -1,9 +1,0 @@
-streamlit
-nltk
-openai
-anthropic
-python-docx
-PyPDF2
-pandas
-plotly
-reportlab
