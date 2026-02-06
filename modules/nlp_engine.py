@@ -1,33 +1,15 @@
-import spacy
 import PyPDF2
 from docx import Document
 import os
 import re
-import subprocess
-import sys
 from collections import defaultdict
 
 class NLPEngine:
     def __init__(self):
-        self.nlp = None
-        try:
-            self.nlp = spacy.load("en_core_web_sm")
-            print("✅ spaCy model loaded successfully")
-        except OSError:
-            # Model not found, try to download it
-            print("📥 spaCy model not found. Attempting to download...")
-            try:
-                # Use subprocess for better error handling
-                subprocess.check_call([
-                    sys.executable, "-m", "spacy", "download", "en_core_web_sm"
-                ])
-                self.nlp = spacy.load("en_core_web_sm")
-                print("✅ spaCy model downloaded and loaded successfully")
-            except Exception as e:
-                print(f"⚠️ Warning: Could not load spaCy model. Using regex-based NLP fallback.")
-                print(f"Error details: {e}")
-                # Will use regex-based fallbacks throughout the code
-                self.nlp = None
+        # Using lightweight regex-based NLP only (no spaCy)
+        # This makes deployment much faster!
+        print("✅ NLP Engine initialized (lightweight regex mode)")
+        self.nlp = None  # Not using spaCy
         
         # Contract type keywords
         self.contract_keywords = {
@@ -127,7 +109,7 @@ class NLPEngine:
         return clauses
 
     def get_enhanced_entities(self, text):
-        """Enhanced NER with contract-specific entities"""
+        """Enhanced NER using regex patterns (no spaCy needed)"""
         entities = {
             "parties": [],
             "persons": [],
@@ -138,35 +120,56 @@ class NLPEngine:
             "durations": [],
         }
         
-        if self.nlp is not None:
-            try:
-                doc = self.nlp(text[:100000])  # Limit for performance
-                
-                for ent in doc.ents:
-                    if ent.label_ == "ORG":
-                        entities["organizations"].append(ent.text)
-                    elif ent.label_ == "PERSON":
-                        entities["persons"].append(ent.text)
-                    elif ent.label_ == "GPE":
-                        entities["locations"].append(ent.text)
-                    elif ent.label_ == "DATE":
-                        entities["dates"].append(ent.text)
-                    elif ent.label_ == "MONEY":
-                        entities["amounts"].append(ent.text)
-                    elif ent.label_ == "TIME":
-                        entities["durations"].append(ent.text)
-                
-                # Extract parties (usually first 2 organizations mentioned)
-                if entities["organizations"]:
-                    entities["parties"] = entities["organizations"][:2]
-                
-                # Deduplicate
-                for key in entities:
-                    entities[key] = list(set(entities[key]))
-            except Exception as e:
-                print(f"Error in NER: {e}")
+        # Regex patterns for entity extraction
+        # Dates
+        date_patterns = [
+            r'\b\d{1,2}[/-]\d{1,2}[/-]\d{2,4}\b',  # DD/MM/YYYY or DD-MM-YYYY
+            r'\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}\b',  # Month DD, YYYY
+            r'\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}\b'  # DD Month YYYY
+        ]
+        for pattern in date_patterns:
+            entities["dates"].extend(re.findall(pattern, text, re.IGNORECASE))
         
-        # Extract CIN, GST numbers using regex (works without spaCy)
+        # Money amounts
+        money_patterns = [
+            r'(?:INR|Rs\.?|₹)\s*[\d,]+(?:\.\d{2})?',  # INR/Rs/₹ 1,000.00
+            r'\$\s*[\d,]+(?:\.\d{2})?',  # $1,000.00
+            r'\b\d+\s*(?:lakhs?|crores?|thousands?|millions?)\b'  # 5 lakhs, 2 crores
+        ]
+        for pattern in money_patterns:
+            entities["amounts"].extend(re.findall(pattern, text, re.IGNORECASE))
+        
+        # Organizations (common patterns)
+        org_patterns = [
+            r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+(?:Pvt\.?\s+)?Ltd\.?\b',  # Company Ltd
+            r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+Inc\.?\b',  # Company Inc
+            r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+Corp\.?\b',  # Company Corp
+            r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+LLC\b'  # Company LLC
+        ]
+        for pattern in org_patterns:
+            entities["organizations"].extend(re.findall(pattern, text))
+        
+        # Locations (Indian cities and states)
+        location_keywords = ['Mumbai', 'Delhi', 'Bangalore', 'Bengaluru', 'Chennai', 'Kolkata', 'Hyderabad', 
+                            'Pune', 'Ahmedabad', 'Jaipur', 'Maharashtra', 'Karnataka', 'Tamil Nadu', 'Gujarat']
+        for location in location_keywords:
+            if location.lower() in text.lower():
+                entities["locations"].append(location)
+        
+        # Extract parties (look for "between" clauses)
+        party_pattern = r'between\s+([A-Z][a-zA-Z\s&.]+?)(?:\s+and\s+|\s*,)'
+        parties_found = re.findall(party_pattern, text, re.IGNORECASE)
+        entities["parties"] = [p.strip() for p in parties_found[:2]]
+        
+        # If no parties found, use first 2 organizations
+        if not entities["parties"] and entities["organizations"]:
+            entities["parties"] = entities["organizations"][:2]
+        
+        # Deduplicate all entities
+        for key in entities:
+            entities[key] = list(dict.fromkeys(entities[key]))[:10]  # Keep first 10 unique
+        
+        # Extract CIN, GST numbers (works without spaCy)
         entities["cin"] = re.findall(r'CIN:\s*([A-Z0-9]{21})', text)
         entities["gst"] = re.findall(r'GST:\s*(\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d{1}[A-Z]{1}\d{1})', text)
         
